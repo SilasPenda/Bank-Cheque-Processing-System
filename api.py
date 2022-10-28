@@ -102,7 +102,7 @@ async def bank_cheque(image: UploadFile = File()):
         Bank = df['Bank'].iloc[0]
         Account_Name = df['Account_Name'].iloc[0]
 
-        if (df['Balance'].values >= Amount) & (sign_match > threshold):
+        if (df['Balance'].values >= Amount) & (sign_match >= threshold):
             response = 'Passed'                        
 
         else:
