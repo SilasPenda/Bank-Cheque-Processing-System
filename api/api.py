@@ -6,9 +6,24 @@ from skimage.metrics import structural_similarity as ssim
 import uvicorn
 from fastapi import FastAPI, UploadFile
 from fastapi import File
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello World! Welcome to the Bank cheque verification API"}
+
 
 @app.post('/predict')
 async def bank_cheque(image: UploadFile = File()):
@@ -88,18 +103,18 @@ async def bank_cheque(image: UploadFile = File()):
         Account_Name = df['Account_Name'].iloc[0]
 
         if (df['Balance'].values >= Amount) & (sign_match > threshold):
-            response = 'Passed!'                        
+            response = 'Passed'                        
 
         else:
-            response = 'Failed!'
+            response = 'Failed'
             
         return {
-            'Verification: ' + response,
-            'Date Issued: ' + Issued_Date,
-            'Receiver Name: ' + Receiver_Name,
-            'Payed By: ' + Account_Name,
-            'Bank: ' + Bank,
-            f'Amount: GHC{Amount:.2f}'
+            'status' : response,
+            'issued_date':Issued_Date,
+            'reciepient': Receiver_Name,
+            "account_no": Account_No,
+            'Bank' : Bank,
+            'Amount' : f'GHC{Amount:.2f}'
         }    
                     
             
