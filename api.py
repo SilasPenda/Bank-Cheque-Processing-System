@@ -55,6 +55,7 @@ async def bank_cheque(image: UploadFile = File()):
                 amount = 2235000
                 ac_no = 630801551452
                 iss_date = '15/02/2016'
+                cheq_no = 'U100831U'
                 sign1 = 'signature/roi_13.jpg'
                 sign2 = 'signature_database/roi_13.jpg'
                 
@@ -63,6 +64,7 @@ async def bank_cheque(image: UploadFile = File()):
                 amount = 12100000
                 ac_no = 911010049001545
                 iss_date = '02/02/2002'
+                cheq_no = 'U309086U'
                 sign1 = 'signature/roi_8.jpg'
                 sign2 = 'signature_database/roi_8.jpg'
                 
@@ -71,6 +73,7 @@ async def bank_cheque(image: UploadFile = File()):
                 amount = 25000000
                 ac_no = 30002010108841
                 iss_date = '12/08/2015'
+                cheq_no = 'U083660U'
                 sign1 = 'signature/roi_12.jpg'
                 sign2 = 'signature_database/roi_12.jpg'
                 
@@ -79,10 +82,11 @@ async def bank_cheque(image: UploadFile = File()):
                 amount = 355000
                 ac_no = 2854101006936
                 iss_date = '01/10/2005'
+                cheq_no = 'U120613U'
                 sign1 = 'signature/roi_11.jpg'
                 sign2 = 'signature_database/roi_12.jpg'
                 
-            return r_name, amount, ac_no, iss_date, sign1, sign2
+            return r_name, amount, ac_no, iss_date, cheq_no, sign1, sign2
         
         
         
@@ -92,8 +96,9 @@ async def bank_cheque(image: UploadFile = File()):
         Amount = cheque_data[1]
         Account_No = cheque_data[2]
         Issued_Date = cheque_data[3]
-        Signature1 = cheque_data[4]
-        Signature2 = cheque_data[5]
+        Cheque_No = cheque_data[4
+        Signature1 = cheque_data[5]
+        Signature2 = cheque_data[6]
         sign_match = match(Signature1, Signature2)
         
         
@@ -114,6 +119,7 @@ async def bank_cheque(image: UploadFile = File()):
             'reciepient': Receiver_Name,
             "account_no": Account_No,
             'Bank' : Bank,
+            'Cheque_No' : Cheque_No
             'Amount' : f'GHC{Amount:.2f}'
         }    
                     
