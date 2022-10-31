@@ -13,7 +13,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -96,7 +96,7 @@ async def bank_cheque(image: UploadFile = File()):
         Amount = cheque_data[1]
         Account_No = cheque_data[2]
         Issued_Date = cheque_data[3]
-        Cheque_No = cheque_data[4
+        Cheque_No = cheque_data[4]
         Signature1 = cheque_data[5]
         Signature2 = cheque_data[6]
         sign_match = match(Signature1, Signature2)
@@ -119,7 +119,7 @@ async def bank_cheque(image: UploadFile = File()):
             'reciepient': Receiver_Name,
             "account_no": Account_No,
             'Bank' : Bank,
-            'Cheque_No' : Cheque_No
+            'cheque_No' : Cheque_No,
             'Amount' : f'GHC{Amount:.2f}'
         }    
                     
